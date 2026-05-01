@@ -8,16 +8,7 @@ import { motion } from "motion/react";
 export default function AboutPage() {
   return (
     <div className="pt-20 bg-white">
-      <section className="relative py-48 overflow-hidden flex items-center justify-center text-center">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=1600" 
-            className="w-full h-full object-cover"
-            alt="Makkah View"
-          />
-          <div className="absolute inset-0 bg-primary/20 backdrop-blur-[2px]" />
-          <div className="absolute inset-0 bg-slate-900/60" />
-        </div>
+      <section className="relative py-32 overflow-hidden bg-primary/95">
         <div className="max-w-7xl mx-auto px-10 relative z-10 text-right">
           <motion.h1 
             initial={{ y: 20, opacity: 0 }}
@@ -30,7 +21,7 @@ export default function AboutPage() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-white/80 max-w-2xl ml-auto"
+            className="text-xl text-white/90 max-w-2xl ml-auto"
           >
             نحن فريق يسعى لتسخير أحدث التقنيات لخدمة الحجيج والمعتمرين، لضمان سلامتهم وتفرغهم للعبادة والذكر في أطهر بقاع الأرض.
           </motion.p>
@@ -69,7 +60,7 @@ export default function AboutPage() {
               className="relative"
             >
               <div className="rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white">
-                <img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&q=80&w=800" alt="Al-Masjid Al-Haram" className="w-full h-full object-cover" />
+                <img src="https://images.unsplash.com/photo-1565552607561-79290911ca60?auto=format&fit=crop&q=80&w=800" alt="Masjid Nabawi" className="w-full h-full object-cover" />
               </div>
             </motion.div>
           </div>

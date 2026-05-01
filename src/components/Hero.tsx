@@ -8,17 +8,7 @@ import { Users, User, MapPin } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-white">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&q=80&w=1600" 
-          className="w-full h-full object-cover"
-          alt="Holy Kaaba Background"
-        />
-        <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-[2px]" />
-      </div>
-
+    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-slate-50">
       <div className="max-w-7xl mx-auto w-full px-10 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
         {/* Text Content */}
         <motion.div
@@ -28,25 +18,25 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
           className="space-y-8 text-right"
         >
-          <span className="inline-block px-4 py-1 rounded-full bg-primary/20 text-primary-foreground border border-primary/30 text-sm font-bold tracking-wider backdrop-blur-md">
+          <span className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 text-sm font-bold tracking-wider">
             بوابة المعتمر والمنظم الذكية
           </span>
           
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight text-white mb-6">
+          <h1 className="text-5xl md:text-7xl font-bold leading-tight text-slate-900 mb-6 font-display">
             سهولة في النسك،<br/>
             <span className="text-primary">طمأنينة في الرحلة</span>
           </h1>
           
-          <p className="text-xl text-white/80 leading-relaxed max-w-2xl font-medium">
+          <p className="text-xl text-slate-600 leading-relaxed max-w-2xl font-medium">
             المنصة الأولى المتكاملة لخدمة ضيوف الرحمن، توفر للمعتمر تتبعاً دقيقاً لمجموعته وللمشرف إدارة احترافية ذكية لكل التفاصيل.
           </p>
           
-          <div className="flex flex-wrap items-center gap-6 pt-4">
+          <div className="flex flex-wrap items-center justify-end gap-6 pt-4">
+            <button className="btn-secondary px-10 py-4 border-slate-200 text-slate-900 hover:bg-slate-100 active:scale-95">
+              عرض خطط الاشتراك
+            </button>
             <button className="btn-primary px-10 py-4 shadow-xl shadow-primary/20 hover:scale-105 active:scale-95">
               اشترك الآن
-            </button>
-            <button className="btn-secondary px-10 py-4 border-white text-white hover:bg-white hover:text-primary active:scale-95">
-              عرض خطط الاشتراك
             </button>
           </div>
         </motion.div>
@@ -62,7 +52,7 @@ export default function Hero() {
           {/* Main Square Frame */}
           <div className="relative w-80 h-80 rounded-[3rem] overflow-hidden border-8 border-white/20 shadow-2xl backdrop-blur-sm group">
             <img 
-              src="/regenerated_image_1777656081829.png" 
+              src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&q=80&w=1000" 
               className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700 hover:scale-110"
               alt="Al-Masjid Al-Haram Square"
             />

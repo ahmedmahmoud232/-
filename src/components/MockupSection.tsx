@@ -73,9 +73,9 @@ export default function MockupSection() {
                   <p className="text-sm font-bold mb-4">خريطة المشاعر</p>
                   <div className="aspect-square bg-gray-100 rounded-3xl overflow-hidden relative border border-black/5">
                     <img 
-                      src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&q=80&w=600" 
+                      src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=600" 
                       className="w-full h-full object-cover opacity-20"
-                      alt="Map texture"
+                      alt="Mosque Map texture"
                     />
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                       <div className="relative">

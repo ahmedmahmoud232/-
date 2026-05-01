@@ -10,35 +10,36 @@ import { useState } from "react";
 const plans = [
   {
     id: 1,
-    name: "الباقة المجانية",
-    price: "0",
-    features: ["إضافة مجموعة واحدة مجانية", "تتبع جغرافي أساسي", "تحديث الموقع كل 15 دقيقة", "دعم فني عبر البريد"],
+    name: "باقة 5 مجموعات",
+    price: "3",
+    features: ["إضافة حتى 5 مجموعات", "تتبع جغرافي دقيق", "تحديث الموقع كل 5 دقائق", "تنبيهات مفقودين فورية"],
     isPopular: false,
-    buttonText: "ابدأ مجاناً الآن"
+    buttonText: "اختر الباقة"
   },
   {
     id: 2,
-    name: "الباقة الأساسية",
-    price: "4.99",
-    features: ["إضافة حتى 5 مجموعات", "تتبع جغرافي دقيق", "تحديث الموقع كل 5 دقائق", "تنبيهات مفقودين فورية"],
+    name: "باقة 10 مجموعات",
+    price: "6",
+    features: ["إضافة حتى 10 مجموعات", "تتبع جغرافي فائق الدقة", "تحديث الموقع وقتي (Real-time)", "دعم فني متميز"],
     isPopular: true,
-    buttonText: "اختر الباقة الأساسية"
+    buttonText: "اختر الباقة"
   },
   {
     id: 3,
-    name: "الباقة المتقدمة",
-    price: "9.99",
-    features: ["مجموعات غير محدودة", "تتبع جغرافي فائق الدقة", "تحديث الموقع وقتي (Real-time)", "تقارير أداء المشرفين"],
+    name: "باقة 15 مجموعة",
+    price: "8",
+    features: ["إضافة حتى 15 مجموعة", "لوحة تحكم احترافية", "تقارير أداء مفصلة", "تكامل مع أنظمة الشركة"],
     isPopular: false,
-    buttonText: "اختر الباقة المتقدمة"
+    buttonText: "اختر الباقة"
   },
   {
     id: 4,
-    name: "باقة النخبة",
-    price: "19.99",
-    features: ["كافة مميزات الباقة المتقدمة", "تكامل برمجيات مخصص", "مدير حساب خاص", "دعم فني عبر الهاتف 24/7"],
+    name: "باقة مخصصة",
+    price: "4.5",
+    features: ["حد أدنى 3 مجموعات", "1.5 دولار لكل مجموعة إضافية", "دعم فني خاص", "تخصيص كامل للمميزات"],
     isPopular: false,
-    buttonText: "تواصل مع المبيعات"
+    buttonText: "ابدأ التخصيص",
+    isCustom: true
   }
 ];
 
@@ -47,17 +48,16 @@ interface PricesPageProps {
 }
 
 export default function PricesPage({ onSubscribe }: PricesPageProps) {
+  const [customGroups, setCustomGroups] = useState(3);
+  
+  const calculateCustomPrice = (groups: number) => {
+    if (groups <= 3) return 4.5;
+    return 4.5 + (groups - 3) * 1.5;
+  };
+
   return (
     <div className="pt-20 bg-slate-50 min-h-screen">
-      <section className="relative py-48 overflow-hidden flex items-center justify-center text-center">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1565552607561-79290911ca60?auto=format&fit=crop&q=80&w=1600" 
-            className="w-full h-full object-cover"
-            alt="Makkah Background" 
-          />
-          <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-[1px]" />
-        </div>
+      <section className="relative py-32 overflow-hidden bg-primary/95">
         <div className="max-w-7xl mx-auto px-10 relative z-10 text-right">
           <motion.h1 
             initial={{ y: 20, opacity: 0 }}
@@ -70,7 +70,7 @@ export default function PricesPage({ onSubscribe }: PricesPageProps) {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-white/70 max-w-2xl ml-auto"
+            className="text-xl text-white/90 max-w-2xl ml-auto"
           >
             خطط تسعير مرنة ومدروسة لتناسب احتياجاتكم، من المعتمر المستقل إلى كبرى شركات السياحة لتسهيل أداء المناسك.
           </motion.p>
@@ -87,19 +87,34 @@ export default function PricesPage({ onSubscribe }: PricesPageProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className={`bg-white p-8 rounded-card border ${plan.isPopular ? 'border-primary ring-2 ring-primary/20 scale-105 shadow-xl' : 'border-slate-100'}`}
+                className={`bg-white p-8 rounded-[2.5rem] border ${plan.isPopular ? 'border-primary ring-2 ring-primary/20 scale-105 shadow-xl' : 'border-slate-100 shadow-sm'}`}
               >
                 <h3 className="text-xl font-bold text-slate-900 mb-2">{plan.name}</h3>
                 <div className="mb-6">
-                  <span className="text-4xl font-bold text-slate-900">${plan.price}</span>
+                  <span className="text-4xl font-bold text-slate-900">
+                    ${plan.isCustom ? calculateCustomPrice(customGroups).toFixed(1) : plan.price}
+                  </span>
                   <span className="text-slate-500 text-sm"> / شهرياً</span>
                 </div>
                 
-                <ul className="space-y-4 mb-8 min-h-[200px]">
-                  {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-2 text-slate-600 text-sm">
-                      <Check className="w-5 h-5 text-primary shrink-0" />
+                {plan.isCustom && (
+                  <div className="mb-6 space-y-2">
+                    <label className="text-xs font-bold text-slate-400 block text-right">عدد المجموعات</label>
+                    <input 
+                      type="number" 
+                      min="3"
+                      value={customGroups}
+                      onChange={(e) => setCustomGroups(Math.max(3, parseInt(e.target.value) || 3))}
+                      className="w-full p-3 bg-slate-50 rounded-xl border border-slate-100 text-center font-bold"
+                    />
+                  </div>
+                )}
+                
+                <ul className="space-y-4 mb-8 min-h-[200px] text-right">
+                  {plan.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start justify-end gap-2 text-slate-600 text-sm">
                       <span>{feature}</span>
+                      <Check className="w-5 h-5 text-primary shrink-0" />
                     </li>
                   ))}
                 </ul>

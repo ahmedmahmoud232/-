@@ -12,36 +12,28 @@ const services = [
     title: "نظام المعتمر المتطور",
     description: "نحن ندرك مدى القلق الذي قد يشعر به المعتمر من الضياع في الزحام. لذلك قمنا بتطوير نظام تتبع جغرافي دقيق يعمل في أصعب الظروف داخل الحرم المكي الشريف والمشاعر المقدسة. بضغطة زر واحدة يمكنك معرفة موقع مجموعتك بدقة والوصول إلى مشرفك بأسرع وقت ممكن.",
     icon: <MapPin className="w-12 h-12" />,
-    image: "https://images.unsplash.com/photo-1564769662533-4f00a87b4056?auto=format&fit=crop&q=80&w=800"
+    image: "https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&q=80&w=800"
   },
   {
     id: 2,
     title: "لوحة تحكم المشرف",
     description: "بصفتك مشرفاً، تقع على عاتقك مسؤولية كبيرة. منصتنا توفر لك الأدوات اللازمة لمراقبة جميع أفراد مجموعتك في وقت واحد على خريطة تفاعلية. يمكنك إرسال تنبيهات جماعية في حالات الطوارئ أو التجمع، وضمان عدم تخلف أي معتمر عن الرحلة.",
     icon: <Users className="w-12 h-12" />,
-    image: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=800"
+    image: "https://images.unsplash.com/photo-1565552607561-79290911ca60?auto=format&fit=crop&q=80&w=800"
   },
   {
     id: 3,
     title: "باقات اقتصادية وذكية",
     description: "الإيمان لا يجب أن يكلف كثيراً. صممنا نظام باقات مرن يبدأ بمستوى مجاني للأفراد والمجموعات الصغيرة، وصولاً إلى باقات مخصصة لشركات السياحة الكبيرة. كل ذلك مع ضمان استقرار الخدمة وسرعة الاستجابة على مدار الساعة.",
     icon: <Wallet className="w-12 h-12" />,
-    image: "https://images.unsplash.com/photo-1528659173491-0f7238495f57?auto=format&fit=crop&q=80&w=800"
+    image: "https://images.unsplash.com/photo-1581442111816-d36c2db53e36?auto=format&fit=crop&q=80&w=800"
   },
 ];
 
 export default function ServicesPage() {
   return (
     <div className="pt-20 bg-white">
-      <section className="relative py-48 overflow-hidden flex items-center justify-center text-center">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&q=80&w=1600" 
-            className="w-full h-full object-cover"
-            alt="Al-Masjid Al-Haram" 
-          />
-          <div className="absolute inset-0 bg-slate-900/70 backdrop-blur-[2px]" />
-        </div>
+      <section className="relative py-32 overflow-hidden bg-primary/95">
         <div className="max-w-7xl mx-auto px-10 relative z-10 text-right">
           <motion.h1 
             initial={{ y: 20, opacity: 0 }}
@@ -54,7 +46,7 @@ export default function ServicesPage() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-white/70 max-w-2xl ml-auto"
+            className="text-xl text-white/90 max-w-2xl ml-auto"
           >
             نحن نكرس التقنية لراحة ضيوف الرحمن، ونوفر حلولاً ذكية لكل من المعتمر والمشرف لتجربة لا تُنسى.
           </motion.p>

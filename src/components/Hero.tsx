@@ -6,37 +6,40 @@
 import { motion } from "motion/react";
 import { Users, User, MapPin } from "lucide-react";
 
-export default function Hero() {
+export default function Hero({ isAr }: { isAr?: boolean }) {
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-slate-50">
-      <div className="max-w-7xl mx-auto w-full px-10 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      <div className={`max-w-7xl mx-auto w-full px-10 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center ${isAr ? '' : 'lg:flex-row-reverse'}`}>
         {/* Text Content */}
         <motion.div
-          initial={{ x: 50, opacity: 0 }}
+          initial={{ x: isAr ? 50 : -50, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="space-y-8 text-right"
+          className={`space-y-8 ${isAr ? 'text-right' : 'text-left lg:order-1'}`}
         >
           <span className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 text-sm font-bold tracking-wider">
-            بوابة المعتمر والمنظم الذكية
+            {isAr ? "بوابة المعتمر والمنظم الذكية" : "Smart Portal for Pilgrims & Organizers"}
           </span>
           
           <h1 className="text-5xl md:text-7xl font-bold leading-tight text-slate-900 mb-6 font-display">
-            سهولة في النسك،<br/>
-            <span className="text-primary">طمأنينة في الرحلة</span>
+            {isAr ? "سهولة في النسك،" : "Simplicity in Rituals,"}<br/>
+            <span className="text-primary">{isAr ? "طمأنينة في الرحلة" : "Peace in the Journey"}</span>
           </h1>
           
           <p className="text-xl text-slate-600 leading-relaxed max-w-2xl font-medium">
-            المنصة الأولى المتكاملة لخدمة ضيوف الرحمن، توفر للمعتمر تتبعاً دقيقاً لمجموعته وللمشرف إدارة احترافية ذكية لكل التفاصيل.
+            {isAr 
+              ? "المنصة الأولى المتكاملة لخدمة ضيوف الرحمن، توفر للمعتمر تتبعاً دقيقاً لمجموعته وللمشرف إدارة احترافية ذكية لكل التفاصيل."
+              : "The first integrated platform serving the guests of Allah, providing accurate group tracking for pilgrims and professional smart management for supervisors."
+            }
           </p>
           
-          <div className="flex flex-wrap items-center justify-end gap-6 pt-4">
+          <div className={`flex flex-wrap items-center gap-6 pt-4 ${isAr ? 'justify-end' : 'justify-start'}`}>
             <button className="btn-secondary px-10 py-4 border-slate-200 text-slate-900 hover:bg-slate-100 active:scale-95">
-              عرض خطط الاشتراك
+              {isAr ? "عرض خطط الاشتراك" : "View Subscription Plans"}
             </button>
             <button className="btn-primary px-10 py-4 shadow-xl shadow-primary/20 hover:scale-105 active:scale-95">
-              اشترك الآن
+              {isAr ? "اشترك الآن" : "Sign Up Now"}
             </button>
           </div>
         </motion.div>

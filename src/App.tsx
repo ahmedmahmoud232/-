@@ -22,8 +22,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState("home");
   const [currentLang, setCurrentLang] = useState("ar");
-
-
+  const [selectedPlan, setSelectedPlan] = useState<{ name: string; price: number } | null>(null);
 
   const renderPage = () => {
     switch (currentPage) {
@@ -32,20 +31,23 @@ export default function App() {
       case "pilgrim":
         return <Dashboard onLogout={() => setCurrentPage('home')} isAr={currentLang === 'ar'} role="pilgrim" />;
       case "services":
-        return <ServicesPage />;
+        return <ServicesPage isAr={currentLang === 'ar'} />;
       case "prices":
-        return <PricesPage onSubscribe={() => setCurrentPage('payment')} />;
+        return <PricesPage onSubscribe={(plan) => {
+          setSelectedPlan(plan);
+          setCurrentPage('payment');
+        }} isAr={currentLang === 'ar'} />;
       case "about":
-        return <AboutPage />;
+        return <AboutPage isAr={currentLang === 'ar'} />;
       case "payment":
-        return <PaymentPage onBack={() => setCurrentPage('prices')} isAr={currentLang === 'ar'} />;
+        return <PaymentPage onBack={() => setCurrentPage('prices')} isAr={currentLang === 'ar'} plan={selectedPlan} />;
       default:
         return (
           <>
-            <Hero />
-            <GoalsSection />
-            <MockupSection />
-            <ReviewsSection />
+            <Hero isAr={currentLang === 'ar'} />
+            <GoalsSection isAr={currentLang === 'ar'} />
+            <MockupSection isAr={currentLang === 'ar'} />
+            <ReviewsSection isAr={currentLang === 'ar'} />
           </>
         );
     }
@@ -89,7 +91,7 @@ export default function App() {
               </motion.div>
             </AnimatePresence>
 
-            {!isDashboard && <Footer />}
+            {!isDashboard && <Footer isAr={currentLang === 'ar'} />}
           </motion.main>
         )}
       </AnimatePresence>

@@ -1,0 +1,68 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "App user profile information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string", "enum": ["supervisor", "pilgrim"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "lastLogin": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Group": {
+      "title": "Group",
+      "description": "Hajj or Umrah group created by a supervisor",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "supervisorId": { "type": "string" },
+        "supervisorName": { "type": "string" },
+        "companyName": { "type": "string" },
+        "companyLogo": { "type": "string" },
+        "pilgrimCount": { "type": "number" },
+        "tripDate": { "type": "string", "format": "date" },
+        "departureDate": { "type": "string", "format": "date" },
+        "status": { "type": "string", "enum": ["active", "completed"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "supervisorId", "companyName"]
+    },
+    "JoinRequest": {
+      "title": "Join Request",
+      "description": "Pilgrim request to join a group",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "groupId": { "type": "string" },
+        "groupName": { "type": "string" },
+        "pilgrimId": { "type": "string" },
+        "pilgrimName": { "type": "string" },
+        "pilgrimEmail": { "type": "string" },
+        "supervisorId": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "accepted", "rejected"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["groupId", "pilgrimId", "supervisorId", "status"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "User",
+      "description": "User profiles including roles"
+    },
+    "groups/{groupId}": {
+      "schema": "Group",
+      "description": "Available Hajj and Umrah groups"
+    },
+    "joinRequests/{requestId}": {
+      "schema": "JoinRequest",
+      "description": "Requests from pilgrims to join a specific group"
+    }
+  }
+}

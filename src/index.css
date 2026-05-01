@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "IBM Plex Sans Arabic", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-primary: #008751;
+  --color-primary-light: #ecfdf5;
+  --color-ink: #121212;
+  --color-surface: #ffffff;
+  --color-gray-light: #f8f9fa;
+
+  --radius-btn: 0.5rem;
+  --radius-card: 1.5rem;
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-surface text-ink antialiased leading-relaxed;
+    direction: rtl;
+  }
+}
+
+.btn-primary {
+  @apply bg-primary text-white px-6 py-3 rounded-btn font-semibold transition-all duration-300 hover:brightness-110 active:scale-95 flex items-center justify-center gap-2;
+}
+
+.btn-secondary {
+  @apply border-2 border-primary text-primary px-6 py-3 rounded-btn font-semibold transition-all duration-300 hover:bg-primary/5 active:scale-95 flex items-center justify-center gap-2;
+}
+
+.nav-link {
+  @apply text-ink font-medium transition-colors duration-200 relative;
+}
+
+.nav-link.active {
+  @apply text-primary;
+}
+
+.nav-link.active::after {
+  content: '';
+  @apply absolute -bottom-1 right-0 w-full h-0.5 bg-primary rounded-full;
+}

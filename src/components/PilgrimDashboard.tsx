@@ -194,7 +194,7 @@ export default function PilgrimDashboard({ onLogout, isAr }: PilgrimDashboardPro
           <div className="bg-white rounded-[3rem] border border-slate-200 shadow-2xl overflow-hidden h-full relative">
              <div className="absolute inset-0">
                <img 
-                 src="/src/assets/images/regenerated_image_1777719418445.png" 
+                 src="/src/assets/images/regenerated_image_1777721818853.png" 
                  className="w-full h-full object-cover" 
                  alt="Tracking Map"
                />

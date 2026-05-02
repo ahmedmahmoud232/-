@@ -23,8 +23,8 @@ export default function Hero({ isAr, onNavigate }: { isAr?: boolean, onNavigate?
           </span>
           
           <h1 className="text-5xl md:text-7xl font-bold leading-tight text-slate-900 mb-6 font-display">
-            {isAr ? "سهولة في النسك،" : "Simplicity in Rituals,"}<br/>
-            <span className="text-primary">{isAr ? "طمأنينة في الرحلة" : "Peace in the Journey"}</span>
+            {isAr ? "معتمرون:" : "Motamiroon:"}<br/>
+            <span className="text-primary">{isAr ? "بوصلتك الرقمية" : "Your Digital Compass"}</span>
           </h1>
           
           <p className="text-xl text-slate-600 leading-relaxed max-w-2xl font-medium">

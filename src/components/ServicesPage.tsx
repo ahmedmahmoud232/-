@@ -66,39 +66,22 @@ export default function ServicesPage({ isAr }: { isAr?: boolean }) {
       </section>
 
       {services.map((service, index) => (
-        <section key={service.id} className={`py-32 ${index % 2 === 1 ? 'bg-slate-50' : 'bg-white'}`}>
-          <div className="max-w-7xl mx-auto px-10">
-            <div className={`grid grid-cols-1 lg:grid-cols-2 gap-20 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
-              <motion.div 
-                initial={{ opacity: 0, x: (index % 2 === 0) ? (isAr ? 50 : -50) : (isAr ? -50 : 50) }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className={`${index % 2 === 1 ? 'lg:order-last' : ''} ${isAr ? 'text-right' : 'text-left'}`}
-              >
-                <div className={`w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center text-primary mb-8 shadow-inner ${isAr ? 'ml-auto' : 'mr-auto'}`}>
-                  {service.icon}
-                </div>
-                <h2 className="text-4xl font-bold text-slate-900 mb-8">{isAr ? service.title.ar : service.title.en}</h2>
-                <p className="text-xl text-slate-600 leading-relaxed mb-10">
-                  {isAr ? service.description.ar : service.description.en}
-                </p>
-                <button className="btn-primary">
-                  {isAr ? "ابدأ الاستخدام الآن" : "Start Using Now"}
-                </button>
-              </motion.div>
-              
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                className="relative"
-              >
-                <div className="aspect-video rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white">
-                  <img src={service.image} alt={isAr ? service.title.ar : service.title.en} className="w-full h-full object-cover" />
-                </div>
-                <div className="absolute -bottom-8 -right-8 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10" />
-              </motion.div>
-            </div>
+        <section key={service.id} className={`py-24 ${index % 2 === 1 ? 'bg-slate-50' : 'bg-white'}`}>
+          <div className="max-w-4xl mx-auto px-10">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className={`${isAr ? 'text-right' : 'text-left'}`}
+            >
+              <h2 className="text-4xl font-bold text-slate-900 mb-6">{isAr ? service.title.ar : service.title.en}</h2>
+              <p className="text-xl text-slate-600 leading-relaxed mb-8">
+                {isAr ? service.description.ar : service.description.en}
+              </p>
+              <button className="btn-primary">
+                {isAr ? "ابدأ الاستخدام الآن" : "Start Using Now"}
+              </button>
+            </motion.div>
           </div>
         </section>
       ))}

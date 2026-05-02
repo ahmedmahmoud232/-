@@ -298,7 +298,7 @@ export default function SupervisorDashboard({ onLogout, isAr }: SupervisorDashbo
             {/* Map Frame */}
             <div className="absolute inset-0 bg-slate-100">
               <img 
-                src="/src/assets/images/regenerated_image_1777719418445.png" 
+                src="/src/assets/images/regenerated_image_1777721818853.png" 
                 className="w-full h-full object-cover grayscale-[0.2] opacity-80" 
                 alt="Al-Haram Map"
               />

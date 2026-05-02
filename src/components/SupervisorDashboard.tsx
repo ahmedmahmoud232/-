@@ -24,6 +24,14 @@ export default function SupervisorDashboard({ onLogout, isAr }: SupervisorDashbo
   const [requests, setRequests] = useState<any[]>([]);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'groups' | 'map'>('groups');
+  const [selectedPilgrim, setSelectedPilgrim] = useState<number | null>(null);
+
+  const pilgrims = [
+    { id: 1, top: '45%', left: '55%', name: isAr ? "أحمد محمد" : "Ahmed Mohamed", dist: "120m" },
+    { id: 2, top: '35%', left: '42%', name: isAr ? "سارة أحمد" : "Sarah Ahmed", dist: "85m" },
+    { id: 3, top: '55%', left: '48%', name: isAr ? "محمود حسن" : "Mahmoud Hassan", dist: "210m" },
+    { id: 4, top: '50%', left: '38%', name: isAr ? "فاطمة علي" : "Fatima Ali", dist: "155m" },
+  ];
 
   // Form state
   const [groupName, setGroupName] = useState("");
@@ -286,43 +294,82 @@ export default function SupervisorDashboard({ onLogout, isAr }: SupervisorDashbo
             </div>
           </>
         ) : (
-          <div className="bg-white rounded-[3rem] p-4 border border-slate-100 shadow-sm overflow-hidden h-[600px] relative">
-            <div className="absolute inset-0 grayscale opacity-30">
-              <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=1200" className="w-full h-full object-cover" />
+          <div className="bg-white rounded-[3rem] p-4 border border-slate-200 shadow-xl overflow-hidden h-[700px] relative">
+            {/* Map Frame */}
+            <div className="absolute inset-0 bg-slate-100">
+              <img 
+                src="/src/assets/images/regenerated_image_1777719418445.png" 
+                className="w-full h-full object-cover grayscale-[0.2] opacity-80" 
+                alt="Al-Haram Map"
+              />
+              <div className="absolute inset-0 bg-primary/5 pointer-events-none" />
             </div>
-            <div className="absolute inset-0 bg-primary/10" />
             
-            <div className={`absolute top-10 ${isAr ? 'right-10' : 'left-10'} z-10 ${isAr ? 'text-right' : 'text-left'}`}>
-              <h3 className="text-2xl font-black text-slate-900 mb-2">{isAr ? "مواقع المعتمرين" : "Pilgrim Locations"}</h3>
-              <p className="text-slate-500 font-bold">{isAr ? "تتبع مباشر لـ 24 معتمراً" : "Live tracking of 24 pilgrims"}</p>
-            </div>
-
-            {/* Pins Simulation */}
-            <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ repeat: Infinity, duration: 2 }} className="absolute top-1/4 left-1/3 p-1 bg-primary rounded-full border-2 border-white shadow-xl z-20">
-              <div className="w-4 h-4 bg-primary rounded-full" />
-            </motion.div>
-            <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ repeat: Infinity, duration: 2, delay: 0.5 }} className="absolute top-1/2 left-1/2 p-1 bg-primary rounded-full border-2 border-white shadow-xl z-20">
-              <div className="w-4 h-4 bg-primary rounded-full" />
-            </motion.div>
-            <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ repeat: Infinity, duration: 2, delay: 1 }} className="absolute bottom-1/3 right-1/4 p-1 bg-primary rounded-full border-2 border-white shadow-xl z-20">
-              <div className="w-4 h-4 bg-primary rounded-full" />
-            </motion.div>
-
-            <div className={`absolute bottom-10 ${isAr ? 'left-10' : 'right-10'} bg-white/95 backdrop-blur-md p-8 rounded-[2rem] border border-slate-100 shadow-2xl max-w-sm ${isAr ? 'text-right' : 'text-left'} z-30`}>
-              <h4 className="font-bold text-slate-900 mb-4">{isAr ? "ملخص المواقع" : "Location Summary"}</h4>
-              <div className="space-y-3">
-                <div className={`flex justify-between items-center text-sm ${isAr ? 'flex-row-reverse' : ''}`}>
-                  <span className="text-slate-500">{isAr ? "متواجدون في الحرم" : "In Al-Haram"}</span>
-                  <span className="font-black text-emerald-500">18</span>
+            {/* Supervisor Pin */}
+            <div className="absolute top-[40%] left-[45%] z-30">
+              <div className="relative cursor-pointer group">
+                <div className="absolute inset-[-10px] bg-slate-900/20 rounded-full animate-ping" />
+                <div className="relative w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center text-white border-2 border-white shadow-2xl transition-transform hover:scale-110">
+                  <UserIcon className="w-6 h-6" />
                 </div>
-                <div className={`flex justify-between items-center text-sm ${isAr ? 'flex-row-reverse' : ''}`}>
-                  <span className="text-slate-500">{isAr ? "في الطريق" : "En route"}</span>
-                  <span className="font-black text-amber-500">6</span>
+                <div className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-4 whitespace-nowrap bg-slate-900 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity`}>
+                   {isAr ? "موقعي الحالي (المشرف)" : "My Location (Supervisor)"}
                 </div>
               </div>
-              <button className="w-full mt-6 py-4 bg-slate-900 text-white rounded-xl font-bold text-xs hover:bg-primary transition-all">
-                {isAr ? "عرض جميع المعتمرين" : "View All Pilgrims"}
-              </button>
+            </div>
+
+            {/* Pilgrim Pins (Demo) */}
+            {pilgrims.map(pilgrim => (
+              <div key={pilgrim.id} className="absolute z-20" style={{ top: pilgrim.top, left: pilgrim.left }}>
+                <div className="relative">
+                  <div 
+                    onClick={() => setSelectedPilgrim(selectedPilgrim === pilgrim.id ? null : pilgrim.id)}
+                    className={`relative w-8 h-8 rounded-full flex items-center justify-center text-white border-2 border-white shadow-xl transition-all cursor-pointer hover:scale-125 hover:z-50 ${selectedPilgrim === pilgrim.id ? 'bg-slate-900 scale-125 z-50' : 'bg-primary'}`}
+                  >
+                    <MapPin className="w-4 h-4 fill-current" />
+                  </div>
+                  
+                  {/* Distance Card on Click */}
+                  <div className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-4 transition-all bg-white p-4 rounded-2xl shadow-2xl border border-slate-100 w-48 ${isAr ? 'text-right' : 'text-left'} ${selectedPilgrim === pilgrim.id ? 'opacity-100 scale-100 translate-y-0 visible' : 'opacity-0 scale-90 translate-y-4 invisible'}`}>
+                    <div className="flex justify-between items-start mb-2">
+                      <p className="font-black text-slate-900 text-sm">{pilgrim.name}</p>
+                      <button onClick={(e) => { e.stopPropagation(); setSelectedPilgrim(null); }} className="text-slate-300 hover:text-slate-500">×</button>
+                    </div>
+                    <div className={`flex justify-between items-center text-[10px] font-bold ${isAr ? 'flex-row-reverse' : ''}`}>
+                      <span className="text-slate-400">{isAr ? "المسافة:" : "Distance:"}</span>
+                      <span className="text-primary">{pilgrim.dist}</span>
+                    </div>
+                    <div className="mt-3 h-1 w-full bg-slate-50 rounded-full overflow-hidden">
+                      <div className="h-full bg-primary" style={{ width: '60%' }} />
+                    </div>
+                    <button className="w-full mt-3 py-2 bg-slate-50 text-[10px] font-black uppercase tracking-widest text-slate-400 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors">
+                      {isAr ? "إرسال تنبيه" : "Send Alert"}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            {/* Map Overlay UI */}
+            <div className={`absolute top-10 ${isAr ? 'right-10' : 'left-10'} z-40 bg-white/95 backdrop-blur-md p-6 rounded-[2rem] border border-slate-100 shadow-2xl ${isAr ? 'text-right' : 'text-left'} min-w-[250px]`}>
+              <h3 className="text-xl font-black text-slate-900 mb-2">{isAr ? "تتبع المجموعة" : "Group Tracking"}</h3>
+              <p className="text-slate-500 font-bold mb-4">{isAr ? "مكة المكرمة - الحرم" : "Makkah - Al-Haram"}</p>
+              <div className="flex items-center gap-3 py-3 border-t border-slate-100">
+                <div className="w-3 h-3 bg-primary rounded-full animate-pulse" />
+                <span className="text-sm font-bold text-slate-700">{isAr ? "النظام يعمل بكفاءة" : "System Running Smoothly"}</span>
+              </div>
+            </div>
+
+            <div className={`absolute bottom-10 ${isAr ? 'left-10' : 'right-10'} z-40 bg-slate-900 text-white p-6 rounded-[2rem] shadow-2xl flex items-center gap-6`}>
+              <div className={isAr ? 'text-right' : 'text-left'}>
+                <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">{isAr ? "إجمالي التغطية" : "Total Coverage"}</p>
+                <p className="text-2xl font-black">2.4km²</p>
+              </div>
+              <div className="h-10 w-px bg-slate-700" />
+              <div className={isAr ? 'text-right' : 'text-left'}>
+                <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">{isAr ? "متوسط المسافة" : "Avg. Distance"}</p>
+                <p className="text-2xl font-black text-primary">145m</p>
+              </div>
             </div>
           </div>
         )}

@@ -9,6 +9,7 @@ export default function AboutPage({ isAr }: { isAr?: boolean }) {
   return (
     <div className="pt-20 bg-white">
       <section className="relative py-32 overflow-hidden bg-primary/95">
+        <div className="absolute inset-0 bg-islamic-pattern opacity-50 pointer-events-none mix-blend-overlay" />
         <div className={`max-w-7xl mx-auto px-10 relative z-10 ${isAr ? 'text-right' : 'text-left'}`}>
           <motion.h1 
             initial={{ y: 20, opacity: 0 }}
@@ -71,8 +72,8 @@ export default function AboutPage({ isAr }: { isAr?: boolean }) {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white">
-                <img src="https://images.unsplash.com/photo-1565552607561-79290911ca60?auto=format&fit=crop&q=80&w=800" alt="Masjid Nabawi" className="w-full h-full object-cover" />
+              <div className="rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white aspect-[4/5]">
+                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=1000" alt="Holy Mosque" className="w-full h-full object-cover" />
               </div>
             </motion.div>
           </div>

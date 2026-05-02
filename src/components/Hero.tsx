@@ -6,7 +6,7 @@
 import { motion } from "motion/react";
 import { Users, User, MapPin } from "lucide-react";
 
-export default function Hero({ isAr }: { isAr?: boolean }) {
+export default function Hero({ isAr, onNavigate }: { isAr?: boolean, onNavigate?: (page: string) => void }) {
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-slate-50">
       <div className={`max-w-7xl mx-auto w-full px-10 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center ${isAr ? '' : 'lg:flex-row-reverse'}`}>
@@ -34,12 +34,18 @@ export default function Hero({ isAr }: { isAr?: boolean }) {
             }
           </p>
           
-          <div className={`flex flex-wrap items-center gap-6 pt-4 ${isAr ? 'justify-end' : 'justify-start'}`}>
-            <button className="btn-secondary px-10 py-4 border-slate-200 text-slate-900 hover:bg-slate-100 active:scale-95">
-              {isAr ? "عرض خطط الاشتراك" : "View Subscription Plans"}
-            </button>
-            <button className="btn-primary px-10 py-4 shadow-xl shadow-primary/20 hover:scale-105 active:scale-95">
+          <div className={`flex flex-wrap items-center gap-6 pt-4 ${isAr ? 'justify-start' : 'justify-start'}`}>
+            <button 
+              onClick={() => onNavigate?.('prices')}
+              className="btn-primary px-10 py-4 shadow-xl shadow-primary/20 hover:scale-105 active:scale-95"
+            >
               {isAr ? "اشترك الآن" : "Sign Up Now"}
+            </button>
+            <button 
+              onClick={() => onNavigate?.('prices-custom')}
+              className="btn-secondary px-10 py-4 border-slate-200 text-slate-900 hover:bg-slate-100 active:scale-95"
+            >
+              {isAr ? "بدء اشتراك مخصص" : "Start Custom Subscription"}
             </button>
           </div>
         </motion.div>
@@ -50,14 +56,14 @@ export default function Hero({ isAr }: { isAr?: boolean }) {
           whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="relative flex items-center justify-center"
+          className="relative flex items-center justify-center font-sans"
         >
           {/* Main Square Frame */}
           <div className="relative w-80 h-80 rounded-[3rem] overflow-hidden border-8 border-white/20 shadow-2xl backdrop-blur-sm group">
             <img 
               src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&q=80&w=1000" 
               className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700 hover:scale-110"
-              alt="Al-Masjid Al-Haram Square"
+              alt="Makkah"
             />
           </div>
 

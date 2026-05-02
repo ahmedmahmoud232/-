@@ -4,7 +4,7 @@
  */
 
 import { motion } from "motion/react";
-import { Navigation2, Search, Bell } from "lucide-react";
+import { Navigation2, Search, Bell, User } from "lucide-react";
 
 export default function MockupSection({ isAr }: { isAr?: boolean }) {
   const items = isAr ? [
@@ -36,10 +36,10 @@ export default function MockupSection({ isAr }: { isAr?: boolean }) {
             <ul className="space-y-6">
               {items.map((item, i) => (
                 <li key={i} className={`flex items-center gap-4 text-slate-700 font-bold ${isAr ? 'flex-row' : 'flex-row-reverse justify-end'}`}>
-                  <span>{item}</span>
                   <div className="w-8 h-8 bg-primary rounded-xl flex items-center justify-center shrink-0 shadow-lg shadow-emerald-200/50">
                     <div className="w-2.5 h-2.5 bg-white rounded-full" />
                   </div>
+                  <span>{item}</span>
                 </li>
               ))}
             </ul>
@@ -52,7 +52,7 @@ export default function MockupSection({ isAr }: { isAr?: boolean }) {
               whileInView={{ rotateY: isAr ? -10 : 10, rotateX: 5, y: 0, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1, ease: "easeOut" }}
-              className="relative w-[300px] h-[600px] bg-slate-900 rounded-[3rem] border-[12px] border-slate-800 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] perspective-1000"
+              className="relative w-[300px] h-[600px] bg-slate-900 rounded-[3rem] border-[12px] border-slate-800 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] perspective-1000 group/phone"
             >
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-slate-800 rounded-b-2xl z-20" />
               
@@ -68,12 +68,12 @@ export default function MockupSection({ isAr }: { isAr?: boolean }) {
                     {isAr ? "أهلاً بك، أحمد" : "Welcome, Ahmed"}
                   </h3>
                   <p className={`text-xs opacity-70 ${isAr ? 'text-right' : 'text-left'}`}>
-                    {isAr ? "الموقع الحالي: جبل الرحمة" : "Location: Jabal al-Rahmah"}
+                    {isAr ? "الموقع الحالي: الحرم المكي" : "Location: Al-Haram Mosque"}
                   </p>
                 </div>
                 
-                <div className="px-6 -mt-6">
-                  <div className="bg-surface p-4 rounded-2xl shadow-xl space-y-4">
+                <div className="px-6 -mt-6 relative z-10">
+                  <div className="bg-surface p-4 rounded-2xl shadow-xl space-y-4 border border-slate-100">
                     <div className={`flex items-center justify-between text-ink/40 text-[10px] font-bold uppercase tracking-tighter ${isAr ? 'flex-row' : 'flex-row-reverse'}`}>
                       <span>{isAr ? "البعد عن المشرف" : "Dist. to Supervisor"}</span>
                       <span>{isAr ? "١٥٠ متر" : "150m"}</span>
@@ -84,24 +84,45 @@ export default function MockupSection({ isAr }: { isAr?: boolean }) {
                   </div>
                 </div>
 
-                <div className="p-6">
+                <div className="p-4 flex-grow flex flex-col h-[calc(100%-200px)]">
                   <p className={`text-sm font-bold mb-4 ${isAr ? 'text-right' : 'text-left'}`}>
-                    {isAr ? "خريطة المشاعر" : "Holy Sites Map"}
+                    {isAr ? "تتبع المجموعة" : "Group Tracking"}
                   </p>
-                  <div className="aspect-square bg-gray-100 rounded-3xl overflow-hidden relative border border-black/5">
+                  <div className="flex-grow bg-slate-100 rounded-3xl overflow-hidden relative border border-slate-200 shadow-inner group/map">
                     <img 
-                      src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=600" 
-                      className="w-full h-full object-cover opacity-20"
-                      alt="Map texture"
+                      src="/src/assets/images/regenerated_image_1777719596648.png" 
+                      className="w-full h-full object-cover opacity-90 transition-transform duration-1000 group-hover/map:scale-110"
+                      alt="Map"
                     />
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                      <div className="relative">
-                        <div className="absolute inset-0 animate-ping bg-primary rounded-full opacity-50" />
-                        <div className="relative w-8 h-8 bg-primary rounded-full flex items-center justify-center text-surface shadow-lg">
-                          <Navigation2 className="w-4 h-4 fill-current rotate-45" />
-                        </div>
+                    
+                    {/* Supervisor Pin */}
+                    <div className="absolute top-[30%] left-[40%] group/pin-s">
+                      <motion.div 
+                        animate={{ scale: [1, 1.2, 1] }}
+                        transition={{ repeat: Infinity, duration: 2 }}
+                        className="w-10 h-10 bg-slate-900 rounded-full flex items-center justify-center text-white shadow-xl border-2 border-white cursor-pointer relative z-10"
+                      >
+                        <User className="w-5 h-5" />
+                      </motion.div>
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 opacity-0 group-hover/pin-s:opacity-100 transition-opacity bg-white px-2 py-1 rounded-lg shadow-lg text-[10px] whitespace-nowrap font-bold text-slate-900 border border-slate-100">
+                        {isAr ? "المشرف" : "Supervisor"}
                       </div>
                     </div>
+
+                    {/* Pilgrim Pin (User) */}
+                    <div className="absolute top-[60%] left-[65%] group/pin-p">
+                      <div className="absolute inset-0 animate-ping bg-primary rounded-full opacity-50" />
+                      <div className="relative w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white shadow-lg border-2 border-white cursor-pointer transition-transform group-hover/pin-p:scale-125">
+                        <Navigation2 className="w-4 h-4 fill-current rotate-45" />
+                      </div>
+                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 opacity-0 group-hover/pin-p:opacity-100 transition-opacity bg-white px-2 py-1 rounded-lg shadow-lg text-[10px] whitespace-nowrap font-bold text-slate-900 border border-slate-100">
+                        {isAr ? "أنت" : "You"}
+                      </div>
+                    </div>
+
+                    {/* Other Pilgrims */}
+                    <div className="absolute top-[45%] left-[70%] w-2 h-2 bg-emerald-500 rounded-full border border-white shadow-md" />
+                    <div className="absolute top-[55%] left-[30%] w-2 h-2 bg-emerald-500 rounded-full border border-white shadow-md" />
                   </div>
                 </div>
               </div>

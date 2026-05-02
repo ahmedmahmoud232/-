@@ -30,7 +30,7 @@ const goals = [
     icon: <Users className="w-8 h-8" />,
     color: "bg-primary",
     textColor: "text-surface",
-    image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=600"
+    image: "https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&q=80&w=600"
   },
   {
     id: 3,
@@ -42,36 +42,43 @@ const goals = [
     icon: <Wallet className="w-8 h-8" />,
     color: "bg-ink",
     textColor: "text-surface",
-    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=600"
+    image: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=600"
   },
 ];
 
 export default function GoalsSection({ isAr }: { isAr?: boolean }) {
+  const displayedGoals = isAr ? [...goals].reverse() : goals;
+
   return (
     <section className="relative py-24 bg-slate-50 border-t border-slate-200">
       <div className="max-w-7xl mx-auto px-10">
-        <div className={`grid grid-cols-1 md:grid-cols-3 gap-6 ${isAr ? '' : 'flex-row-reverse'}`}>
-          {goals.map((goal, i) => (
+        <div className={`grid grid-cols-1 md:grid-cols-3 gap-8`}>
+          {displayedGoals.map((goal, i) => (
             <motion.div
               key={goal.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`glass-card p-8 rounded-card flex flex-col group hover:border-primary transition-all duration-300 min-h-[250px] ${isAr ? 'text-right' : 'text-left'}`}
+              whileHover={{ y: -10 }}
+              className={`bg-white p-10 rounded-[2.5rem] border-2 border-slate-100 shadow-sm flex flex-col group hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 min-h-[300px] ${isAr ? 'text-right' : 'text-left'}`}
             >
-              <div className={`flex items-center gap-4 mb-6 ${isAr ? 'flex-row' : 'flex-row-reverse'}`}>
-                <div className={`w-14 h-14 rounded-2xl bg-primary flex items-center justify-center text-white shadow-lg shadow-emerald-200/20`}>
+              <div className={`flex items-center gap-5 mb-8 ${isAr ? 'flex-row' : 'flex-row-reverse'}`}>
+                <div className={`w-16 h-16 rounded-[1.5rem] bg-slate-50 flex items-center justify-center text-primary shadow-inner group-hover:bg-primary group-hover:text-white transition-colors duration-500`}>
                   {goal.icon}
                 </div>
                 <div>
-                  <h3 className="font-bold text-slate-900 text-xl">{isAr ? goal.title.ar : goal.title.en}</h3>
-                  <p className="text-xs text-slate-500 font-medium">{isAr ? "خدمات ذكية" : "Smart Services"}</p>
+                  <h3 className="font-black text-slate-900 text-2xl mb-1">{isAr ? goal.title.ar : goal.title.en}</h3>
+                  <p className="text-[10px] text-primary font-black uppercase tracking-widest">{isAr ? "خدمة متميزة" : "Premium Service"}</p>
                 </div>
               </div>
-              <p className="text-slate-600 leading-relaxed">
+              <p className="text-slate-500 leading-relaxed text-lg flex-grow">
                 {isAr ? goal.description.ar : goal.description.en}
               </p>
+              
+              <div className={`mt-8 pt-6 border-t border-slate-50 flex ${isAr ? 'justify-start' : 'justify-end'}`}>
+                <div className="w-8 h-1 bg-slate-100 group-hover:w-full group-hover:bg-primary/20 transition-all duration-700 rounded-full" />
+              </div>
             </motion.div>
           ))}
         </div>

@@ -25,7 +25,7 @@ const services = [
       en: "As a supervisor, you carry big responsibility. Our platform provides tools to monitor all group members simultaneously on an interactive map."
     },
     icon: <Users className="w-12 h-12" />,
-    image: "https://images.unsplash.com/photo-1565552607561-79290911ca60?auto=format&fit=crop&q=80&w=800"
+    image: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=800"
   },
   {
     id: 3,
@@ -35,7 +35,7 @@ const services = [
       en: "Faith shouldn't be costly. We designed flexible plans starting with a free tier for individuals and small groups, up to custom plans for large agencies."
     },
     icon: <Wallet className="w-12 h-12" />,
-    image: "https://images.unsplash.com/photo-1581442111816-d36c2db53e36?auto=format&fit=crop&q=80&w=800"
+    image: "https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&q=80&w=800"
   },
 ];
 
@@ -43,6 +43,7 @@ export default function ServicesPage({ isAr }: { isAr?: boolean }) {
   return (
     <div className="pt-20 bg-white">
       <section className="relative py-32 overflow-hidden bg-primary/95">
+        <div className="absolute inset-0 bg-islamic-pattern opacity-50 pointer-events-none mix-blend-overlay" />
         <div className={`max-w-7xl mx-auto px-10 relative z-10 ${isAr ? 'text-right' : 'text-left'}`}>
           <motion.h1 
             initial={{ y: 20, opacity: 0 }}

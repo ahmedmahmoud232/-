@@ -95,13 +95,13 @@ export default function Header({ onNavigate, onLanguageChange, currentPage, curr
             <div className="flex items-center gap-4 text-sm font-bold">
               <button 
                 onClick={() => onNavigate('supervisor')}
-                className="text-slate-700 hover:text-primary transition-colors"
+                className="btn-primary"
               >
                 {isAr ? "بوابة المشرف" : "Supervisor Portal"}
               </button>
               <button 
                 onClick={() => onNavigate('pilgrim')}
-                className="btn-primary"
+                className="text-slate-700 hover:text-primary transition-colors"
               >
                 {isAr ? "بوابة المعتمر" : "Pilgrim Portal"}
               </button>
@@ -128,10 +128,10 @@ export default function Header({ onNavigate, onLanguageChange, currentPage, curr
             </button>
           ))}
           <div className="pt-4 border-t border-slate-50 flex flex-col gap-4">
-            <button onClick={() => handleNav('supervisor')} className="text-slate-700 font-bold text-right">
+            <button onClick={() => handleNav('supervisor')} className="btn-primary w-full">
               {isAr ? "بوابة المشرف" : "Supervisor Portal"}
             </button>
-            <button onClick={() => handleNav('pilgrim')} className="btn-primary w-full">
+            <button onClick={() => handleNav('pilgrim')} className="text-slate-700 font-bold text-right">
               {isAr ? "بوابة المعتمر" : "Pilgrim Portal"}
             </button>
           </div>

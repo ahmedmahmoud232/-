@@ -63,17 +63,17 @@ export default function ReviewsSection({ isAr }: { isAr?: boolean }) {
           {reviews.map((review) => (
             <div key={review.id} className={`glass-card p-8 rounded-card relative group hover:border-primary transition-all duration-300 shadow-sm ${isAr ? 'text-right' : 'text-left'}`}>
               <Quote className={`absolute top-8 ${isAr ? 'left-8' : 'right-8'} w-12 h-12 text-primary/5 group-hover:text-primary/10 transition-colors`} />
-              <div className={`flex items-center gap-1 mb-6 ${isAr ? 'justify-end' : 'justify-start'}`}>
+              <div className={`flex items-center gap-1 mb-6 ${isAr ? 'flex-row-reverse' : ''}`}>
                 {[...Array(review.rating)].map((_, i) => (
                   <Star key={i} className="w-4 h-4 fill-primary text-primary" />
                 ))}
               </div>
-              <p className="text-slate-700 text-lg leading-relaxed mb-10 font-medium">"{isAr ? review.text.ar : review.text.en}"</p>
+              <p className="text-slate-700 text-lg leading-relaxed mb-10 font-medium whitespace-pre-line">"{isAr ? review.text.ar : review.text.en}"</p>
               <div className={`flex items-center gap-4 pt-6 border-t border-slate-50 ${isAr ? 'flex-row-reverse' : ''}`}>
-                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center font-bold text-primary">
+                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center font-bold text-primary shrink-0">
                   {isAr ? review.name.ar[0] : review.name.en[0]}
                 </div>
-                <div>
+                <div className={`${isAr ? 'text-right' : 'text-left'}`}>
                   <h4 className="font-bold text-slate-900">{isAr ? review.name.ar : review.name.en}</h4>
                   <p className="text-xs text-slate-400 font-medium">{isAr ? review.date.ar : review.date.en}</p>
                 </div>

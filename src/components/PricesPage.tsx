@@ -72,6 +72,7 @@ export default function PricesPage({ onSubscribe, isAr }: PricesPageProps) {
   return (
     <div className="pt-20 bg-slate-50 min-h-screen">
       <section className="relative py-32 overflow-hidden bg-primary/95">
+        <div className="absolute inset-0 bg-islamic-pattern opacity-50 pointer-events-none mix-blend-overlay" />
         <div className={`max-w-7xl mx-auto px-10 relative z-10 ${isAr ? 'text-right' : 'text-left'}`}>
           <motion.h1 
             initial={{ y: 20, opacity: 0 }}
@@ -141,6 +142,7 @@ export default function PricesPage({ onSubscribe, isAr }: PricesPageProps) {
 
           {/* Custom Plan Row - Full Width */}
           <motion.div
+            id="custom-plan"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

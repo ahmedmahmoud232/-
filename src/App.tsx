@@ -24,6 +24,18 @@ export default function App() {
   const [currentLang, setCurrentLang] = useState("ar");
   const [selectedPlan, setSelectedPlan] = useState<{ name: string; price: number } | null>(null);
 
+  const handleNavigate = (page: string) => {
+    if (page === 'prices-custom') {
+      setCurrentPage('prices');
+      setTimeout(() => {
+        document.getElementById('custom-plan')?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+      return;
+    }
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const renderPage = () => {
     switch (currentPage) {
       case "supervisor":
@@ -44,7 +56,7 @@ export default function App() {
       default:
         return (
           <>
-            <Hero isAr={currentLang === 'ar'} />
+            <Hero isAr={currentLang === 'ar'} onNavigate={handleNavigate} />
             <GoalsSection isAr={currentLang === 'ar'} />
             <MockupSection isAr={currentLang === 'ar'} />
             <ReviewsSection isAr={currentLang === 'ar'} />
@@ -73,7 +85,7 @@ export default function App() {
               <Header 
                 currentPage={currentPage} 
                 currentLang={currentLang}
-                onNavigate={setCurrentPage}
+                onNavigate={handleNavigate}
                 onLanguageChange={setCurrentLang}
                 onAuthClick={() => {}}
               />
